@@ -1,19 +1,25 @@
 #pip install flask
 #pip install flask-sqlalchemy
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
+@app.route("/home")
 def index():
-    return "hellow world"
+    return render_template("index.html")
 
 
 @app.route("/about")
 def about():
-    return "About page"
+    return render_template("about.html")
+
+
+@app.route("/user/<string:name>/<int>:id")
+def user(name, id):
+    return "User page: " + name + "  -  " + str(id)
 
 
 if __name__== "__main__":
